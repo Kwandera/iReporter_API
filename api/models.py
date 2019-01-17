@@ -11,7 +11,7 @@ class User:
    
         
 class Incident:
-    def __init__(self,incident_id,created_on,created_by,type,location,status,Images,Videos,comment):
+    def __init__(self,incident_id,created_on,created_by,type,location,status,Images,comment):
         self.incident_id=incident_id
         self.created_on=created_on
         self.created_by=created_by
@@ -19,17 +19,17 @@ class Incident:
         self.location=location
         self.status=status
         self.Images=Images
-        self.Videos=Videos
         self.comment=comment
         
     def get_incident(self):
-        return{"incident_id":self.incident_id,
+        return
+        {"incident_id":self.incident_id,
         "created_on":self.created_on,
         "created_by":self.created_by,
         "type": self.type,
         "status":self.status,
         "location": self.location,
         "Images":self.Images,
-        "videos":self.Videos,
-        "comment":self.comment}
+        "comment":self.comment
+        }
         

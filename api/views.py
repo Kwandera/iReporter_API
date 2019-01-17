@@ -1,7 +1,7 @@
 from flask import Flask,request,jsonify,abort
 
 from datetime import datetime
-from api.models import User,Incident
+from api.models import User, Incident
 
 app=Flask(__name__)
 users=[]
@@ -42,20 +42,21 @@ def  create_incident():
     incident_id=len(Incidents)+1
     created_on = datetime.now
     incident=Incident(incident_id,created_on,info['created_by'],info['type'],info['location'],
-                      info['status'],info['Images'],info['Videos'],info['comment'])
+                      info['status'],info['Images'],info['comment'])
     Incidents.append(incident)
     return jsonify({"message":"incident successfully created"}),201
 
 @app.route('/api/v1/incidents',methods=['GET'])
 def  fetch_incidents():
     #this function enables user to fetch all incidents
-    incidents = [incident.get_incident() for incident in Incidents]
-    return jsonify({"message": Incidents}),200
+    incident = [incident.get_incident() for incident in Incidents]
+    if incident:
+        return jsonify({"message": Incidents}),200
 
 @app.route('/api/v1/incidents/<incident_id>', methods=['GET'])
 def  fetch_single_incident(incident_id):
     fetch_incident=[]
-    incident= incidents [incident_id -1]
+    incident= Incidents [incident_id -1]
     fetch_incident.append(incident.get_incident())
     return jsonify({"incident":fetch_incident}),200
 
